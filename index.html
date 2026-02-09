@@ -424,9 +424,6 @@
             >
               <span aria-hidden="true">✅</span> Kiểm tra kết quả
             </button>
-            <button class="btn btnGhost" id="resetBtn" title="Làm lại">
-              <span aria-hidden="true">↩</span> Làm lại
-            </button>
           </div>
         </div>
 
@@ -546,7 +543,6 @@
       // ---- DOM ----
       const answerEl = document.getElementById("answer");
       const checkBtn = document.getElementById("checkBtn");
-      const resetBtn = document.getElementById("resetBtn");
       const resultArea = document.getElementById("resultArea");
       const studentDiff = document.getElementById("studentDiff");
       const originalEl = document.getElementById("originalText");
@@ -635,17 +631,6 @@
 
         const res = compareWords(originalWords, studentWords);
         showResult(res);
-      });
-
-      resetBtn.addEventListener("click", () => {
-        answerEl.value = "";
-        scoreValue.textContent = "—";
-        statsValue.textContent = "—";
-        scoreBar.style.width = "0%";
-        scoreHint.textContent = "—";
-        studentDiff.innerHTML = "";
-        resultArea.classList.add("hidden");
-        answerEl.focus();
       });
     </script>
   </body>
