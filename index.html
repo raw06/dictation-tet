@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dictation - Tet Holiday</title>
+    <style>
+      :root {
+        --bg1: #0b1220;
+        --bg2: #0f172a;
+        --card: #0b1220cc;
+        --card2: #0b1220;
+        --border: rgba(255, 255, 255, 0.1);
+        --text: #e5e7eb;
+        --muted: #a5b4fc;
+        --muted2: #94a3b8;
+        --good: #34d399;
+        --warn: #fde68a;
+        --blue: #3b82f6;
+        --blue2: #2563eb;
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+        --radius: 18px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial;
+        color: var(--text);
+        background:
+          radial-gradient(
+            900px 500px at 12% 10%,
+            rgba(59, 130, 246, 0.35),
+            transparent 55%
+          ),
+          radial-gradient(
+            900px 500px at 88% 0%,
+            rgba(52, 211, 153, 0.22),
+            transparent 55%
+          ),
+          radial-gradient(
+            900px 600px at 50% 110%,
+            rgba(167, 139, 250, 0.18),
+            transparent 60%
+          ),
+          linear-gradient(180deg, var(--bg1), var(--bg2));
+        min-height: 100vh;
+      }
+
+      .wrap {
+        max-width: 980px;
+        margin: 34px auto;
+        padding: 0 16px 60px;
+      }
+
+      .header {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+      }
+
+      .title {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(
+          135deg,
+          rgba(59, 130, 246, 0.9),
+          rgba(167, 139, 250, 0.75)
+        );
+        box-shadow: 0 14px 30px rgba(59, 130, 246, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        flex: 0 0 auto;
+      }
+      .badge svg {
+        opacity: 0.95;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: 0.2px;
+      }
+      .subtitle {
+        margin: 4px 0 0 0;
+        color: var(--muted2);
+        font-size: 13.5px;
+        max-width: 720px;
+      }
+
+      .card {
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.03)
+        );
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+      }
+
+      .cardTop {
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+      }
+
+      .pillRow {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.22);
+        color: var(--muted2);
+        font-size: 13px;
+        user-select: none;
+        white-space: nowrap;
+      }
+      .pill strong {
+        color: #e5e7eb;
+        font-weight: 650;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        border: 0;
+        cursor: pointer;
+        border-radius: 14px;
+        padding: 10px 12px;
+        font-weight: 700;
+        color: white;
+        display: inline-flex;
+        gap: 9px;
+        align-items: center;
+        transition:
+          transform 0.08s ease,
+          filter 0.18s ease,
+          background 0.18s ease;
+        user-select: none;
+      }
+      .btn:active {
+        transform: translateY(1px) scale(0.99);
+      }
+      .btnPrimary {
+        background: linear-gradient(
+          135deg,
+          var(--blue),
+          rgba(167, 139, 250, 0.9)
+        );
+        box-shadow: 0 12px 28px rgba(59, 130, 246, 0.18);
+      }
+      .btnPrimary:hover {
+        filter: brightness(1.05);
+      }
+      .btnGhost {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        color: #e5e7eb;
+      }
+      .btnGhost:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .content {
+        padding: 16px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .panel {
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.18);
+        overflow: hidden;
+      }
+
+      .panelHeader {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .panelHeader .label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted2);
+        font-size: 13px;
+        font-weight: 650;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .helper {
+        color: var(--muted2);
+        font-size: 13px;
+      }
+
+      audio {
+        width: 100%;
+        display: block;
+        filter: saturate(1.1);
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 160px;
+        padding: 14px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(2, 6, 23, 0.65);
+        color: var(--text);
+        outline: none;
+        font-size: 15px;
+        line-height: 1.55;
+        resize: vertical;
+      }
+      textarea::placeholder {
+        color: rgba(148, 163, 184, 0.85);
+      }
+      textarea:focus {
+        border-color: rgba(59, 130, 246, 0.55);
+        box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.16);
+      }
+
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      @media (min-width: 860px) {
+        .grid2 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .box {
+        padding: 14px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .diff span.mismatch {
+        background: rgba(253, 230, 138, 0.95);
+        color: #0b1220;
+        padding: 1px 4px;
+        border-radius: 6px;
+        box-shadow: 0 6px 14px rgba(253, 230, 138, 0.12);
+      }
+      .diff span.missing {
+        background: rgba(253, 230, 138, 0.95);
+        color: #0b1220;
+        padding: 1px 4px;
+        border-radius: 6px;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+      }
+      .diff .ok {
+        color: rgba(229, 231, 235, 0.92);
+      }
+
+      .scoreBarWrap {
+        width: 100%;
+        max-width: 360px;
+        border: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.22);
+        border-radius: 999px;
+        overflow: hidden;
+        height: 12px;
+      }
+      .scoreBar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(
+          90deg,
+          rgba(52, 211, 153, 0.95),
+          rgba(59, 130, 246, 0.95)
+        );
+        transition: width 0.35s ease;
+      }
+
+      .footerNote {
+        margin-top: 12px;
+        color: rgba(148, 163, 184, 0.95);
+        font-size: 13px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <div class="title">
+          <div class="badge" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 6v6l4 2"
+                stroke="white"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                stroke="white"
+                stroke-width="2.2"
+              />
+            </svg>
+          </div>
+          <div>
+            <h1>Bài tập Dictation: Tet Holiday</h1>
+            <p class="subtitle">
+              Nghe audio, gõ lại nội dung bạn nghe được. Bấm “Kiểm tra kết quả”
+              để xem chỗ sai (tô vàng) và % chính xác.
+            </p>
+          </div>
+        </div>
+
+        <div class="pillRow">
+          <span class="pill">So sánh theo từng từ</span>
+          <span class="pill">Không phân biệt HOA/thường</span>
+          <span class="pill">Bỏ qua dấu câu</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardTop">
+          <div class="pillRow">
+            <span class="pill"
+              ><strong id="scoreText">Độ chính xác:</strong>
+              <span id="scoreValue">—</span></span
+            >
+            <span class="pill"
+              ><strong id="statText">Đúng:</strong>
+              <span id="statsValue">—</span></span
+            >
+            <span class="pill">
+              <span
+                style="
+                  width: 10px;
+                  height: 10px;
+                  border-radius: 50%;
+                  background: rgba(52, 211, 153, 0.9);
+                  display: inline-block;
+                "
+              ></span>
+              Đúng
+            </span>
+            <span class="pill">
+              <span
+                style="
+                  width: 10px;
+                  height: 10px;
+                  border-radius: 50%;
+                  background: rgba(253, 230, 138, 0.95);
+                  display: inline-block;
+                "
+              ></span>
+              Sai / Thiếu
+            </span>
+          </div>
+
+          <div class="actions">
+            <button
+              class="btn btnPrimary"
+              id="checkBtn"
+              title="Kiểm tra kết quả"
+            >
+              <span aria-hidden="true">✅</span> Kiểm tra kết quả
+            </button>
+            <button class="btn btnGhost" id="resetBtn" title="Làm lại">
+              <span aria-hidden="true">↩</span> Làm lại
+            </button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="panel">
+            <div class="panelHeader">
+              <div class="label">Audio</div>
+              <div class="helper">
+                Bạn có thể play/pause và tua lại tuỳ thích
+              </div>
+            </div>
+            <div class="box" style="padding-top: 12px">
+              <!-- THAY src BÊN DƯỚI BẰNG LINK AUDIO CỦA BẠN -->
+              <audio id="audio" controls preload="metadata">
+                <source src="audio.mp3" type="audio/mpeg" />
+                Trình duyệt của bạn không hỗ trợ audio.
+              </audio>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panelHeader">
+              <div class="label">Bài làm</div>
+              <div class="helper">
+                Hãy gõ lại nội dung bạn nghe được vào đây.
+              </div>
+            </div>
+            <div class="box">
+              <textarea
+                id="answer"
+                placeholder="Hãy gõ lại nội dung bạn nghe được vào đây."
+              ></textarea>
+              <div class="footerNote">
+                Mẹo: Nếu bạn gõ sai chính tả, từ đó sẽ bị tô vàng.
+              </div>
+            </div>
+          </div>
+
+          <div id="resultArea" class="panel hidden">
+            <div class="panelHeader">
+              <div class="label">Kết quả</div>
+              <div
+                style="
+                  display: flex;
+                  gap: 10px;
+                  align-items: center;
+                  flex-wrap: wrap;
+                "
+              >
+                <div
+                  class="scoreBarWrap"
+                  aria-label="Thanh tiến độ độ chính xác"
+                >
+                  <div class="scoreBar" id="scoreBar"></div>
+                </div>
+                <div class="helper" id="scoreHint">—</div>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="grid2">
+                <div>
+                  <div
+                    class="panelHeader"
+                    style="
+                      border: 0;
+                      border-radius: 14px;
+                      background: rgba(255, 255, 255, 0.03);
+                      margin-bottom: 10px;
+                    "
+                  >
+                    <div
+                      class="label"
+                      style="text-transform: none; letter-spacing: 0"
+                    >
+                      Bài bạn gõ (tô vàng chỗ khác)
+                    </div>
+                  </div>
+                  <div class="diff" id="studentDiff"></div>
+                </div>
+
+                <div>
+                  <div
+                    class="panelHeader"
+                    style="
+                      border: 0;
+                      border-radius: 14px;
+                      background: rgba(255, 255, 255, 0.03);
+                      margin-bottom: 10px;
+                    "
+                  >
+                    <div
+                      class="label"
+                      style="text-transform: none; letter-spacing: 0"
+                    >
+                      Lời thoại gốc
+                    </div>
+                  </div>
+                  <div id="originalText"></div>
+                </div>
+              </div>
+
+              <div class="footerNote">
+                Ghi chú: Hệ thống so sánh theo từng từ (word-by-word). Nếu thiếu
+                từ, hệ thống sẽ hiện từ gốc (tô vàng + gạch chân).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ====== LỜI THOẠI GỐC ======
+      const ORIGINAL = `During Tet holiday, Vietnamese people clean their houses, decorate with peach blossoms, make Chung cake, visit relatives, receive lucky money, and stay together to welcome the Lunar New Year.`;
+
+      // ---- DOM ----
+      const answerEl = document.getElementById("answer");
+      const checkBtn = document.getElementById("checkBtn");
+      const resetBtn = document.getElementById("resetBtn");
+      const resultArea = document.getElementById("resultArea");
+      const studentDiff = document.getElementById("studentDiff");
+      const originalEl = document.getElementById("originalText");
+
+      const scoreValue = document.getElementById("scoreValue");
+      const statsValue = document.getElementById("statsValue");
+      const scoreBar = document.getElementById("scoreBar");
+      const scoreHint = document.getElementById("scoreHint");
+
+      originalEl.textContent = ORIGINAL;
+
+      // ---- Helpers ----
+      function escapeHTML(str) {
+        return str
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      // Chuẩn hoá: lower-case, bỏ dấu câu, gộp khoảng trắng
+      function normalizeToWords(text) {
+        const cleaned = (text || "")
+          .toLowerCase()
+          .replace(/[^\p{L}\p{N}]+/gu, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+        return cleaned ? cleaned.split(" ") : [];
+      }
+
+      // So sánh theo từng vị trí từ (nhanh, dễ hiểu)
+      function compareWords(originalWords, studentWords) {
+        const maxLen = Math.max(originalWords.length, studentWords.length);
+        let correct = 0;
+        const rendered = [];
+
+        for (let i = 0; i < maxLen; i++) {
+          const o = originalWords[i];
+          const s = studentWords[i];
+
+          if (s === undefined && o !== undefined) {
+            rendered.push(`<span class="missing">${escapeHTML(o)}</span>`);
+            continue;
+          }
+          if (o === undefined && s !== undefined) {
+            rendered.push(`<span class="mismatch">${escapeHTML(s)}</span>`);
+            continue;
+          }
+          if (s === o) {
+            correct++;
+            rendered.push(`<span class="ok">${escapeHTML(s)}</span>`);
+          } else {
+            rendered.push(`<span class="mismatch">${escapeHTML(s)}</span>`);
+          }
+        }
+
+        const total = originalWords.length;
+        const accuracy = total === 0 ? 0 : Math.round((correct / total) * 100);
+
+        return { correct, total, accuracy, renderedHTML: rendered.join(" ") };
+      }
+
+      function showResult({ correct, total, accuracy, renderedHTML }) {
+        scoreValue.textContent = `${accuracy}%`;
+        statsValue.textContent = `${correct} / ${total} từ`;
+        scoreBar.style.width = `${accuracy}%`;
+        scoreHint.textContent =
+          accuracy >= 90
+            ? "Rất tốt! Gần như chính xác."
+            : accuracy >= 70
+              ? "Ổn rồi — thử nghe lại vài chỗ tô vàng."
+              : "Bạn nghe lại từng cụm nhỏ và gõ lại nhé.";
+
+        studentDiff.innerHTML =
+          renderedHTML ||
+          `<span style="color:rgba(148,163,184,.95)">(Bạn chưa nhập gì.)</span>`;
+        resultArea.classList.remove("hidden");
+        resultArea.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // ---- Events ----
+      checkBtn.addEventListener("click", () => {
+        const originalWords = normalizeToWords(ORIGINAL);
+        const studentWords = normalizeToWords(answerEl.value);
+
+        const res = compareWords(originalWords, studentWords);
+        showResult(res);
+      });
+
+      resetBtn.addEventListener("click", () => {
+        answerEl.value = "";
+        scoreValue.textContent = "—";
+        statsValue.textContent = "—";
+        scoreBar.style.width = "0%";
+        scoreHint.textContent = "—";
+        studentDiff.innerHTML = "";
+        resultArea.classList.add("hidden");
+        answerEl.focus();
+      });
+    </script>
+  </body>
+</html>
